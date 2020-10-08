@@ -35,11 +35,13 @@ namespace Momenton.CodingChallenge
             var managerPosition = new EmployeePosition { Name = manager.Name, CompanyLevel = 1, TableIndex = 0 };
             employeePositionObjects.TryAdd(employeeId, managerPosition);
 
+            //Outer loop is to loop increment the company level and change the employee id that will then be used in the next loop
             for (var v = 0; v < employeeList.Count; v++)
             {
                 bool didUpdate = false;
 
-                for (var i = 1; i < employeeList.Count; i++)
+                //Used to loop through each employee 
+                for (var i = 0; i < employeeList.Count; i++)
                 {
                     var employeeName = employeeList[i].Name;
                     var employeeManagerId = employeeList[i].ManagerId;
@@ -50,6 +52,7 @@ namespace Momenton.CodingChallenge
                         continue;
                     }
 
+                    //Loop used to check whether the manager id against the current manager
                     for (var x = 0; x < employeeList.Count; x++)
                     {
 
@@ -70,7 +73,6 @@ namespace Momenton.CodingChallenge
             }
 
             PrintTable(employeePositionObjects);
-            Console.WriteLine("Hello World!");
         }
 
         private static void PrintTable(Dictionary<int, EmployeePosition> employeePositionObjects)
